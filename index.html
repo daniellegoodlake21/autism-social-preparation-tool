@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autism Social Preparation Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="public/js/index.js" defer></script>
+</head>
+<body>
+    <!--Navbar/Title Section-->
+    <nav class="navbar navbar-expand-lg px-2 py-3">
+        <div class="container-fluid">
+            <img class="logo-img" src="public/images/logo.png" alt="Autism Social Situation Preparation Tool Logo" width="80" height="80">
+            <h1 class="navbar-title mx-auto" href="#">Autism Social Situation Preparation Tool</h1>
+        </div>
+    </nav>
+    <!--Social Situation Variables Input Section-->
+    <nav class="situation-variables-section">
+        <div class="container-fluid p-4">
+            <h2 class="aligned-header">Social Situation Variables</h2>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="variable-group col-10 col-lg-5 col-md-5">
+                        <h3>Individual Personality Factors</h3>
+                    </div>
+                    <div class="variable-group col-10 col-lg-5 col-md-5">
+                        <h3>Sensory Environment</h3>
+                        <div class="question">
+                            <h4>Food Familiarity</h4>
+                            <p>For some autistic people, certain (or new) textures and tastes are very discomforting or even unbearable, which elevates stress.</p>
+                            <input type="radio" id="no_food" name="food" value="NoFood">
+                            <label for="no_food">No Food Involved</label>
+                            <br>
+                            <input type="radio" id="familiar_food" name="food" value="FamiliarFood">
+                            <label for="no_food">Familiar Food Available</label>
+                            <br>
+                            <input type="radio" id="difficult_food" name="food" value="DifficultFood">
+                            <label for="no_food">Only New or Difficult Foods</label>
+                        </div>
+                        <div class="question">
+                            <h4>Smells</h4>
+                            <p>Strong smells can contribute towards an overwhelming atmosphere.</p>
+                            <input type="checkbox" name="smells" id="strong_smells" value="StrongSmells">
+                            <label for="strong_smells">Strong Smells Present</label>
+                        </div>
+                        <div class="question">
+                            <h4>Music</h4>
+                            <p>Loud music can also be overwhelming and make it harder to listen and engage with others.</p>
+                            <input type="checkbox" name="music" id="loud_music" value="LoudMusic">
+                            <label for="loud_music">Loud Music Playing</label>
+                        </div>
+                        <div class="question">
+                            <h4>Sudden Unexpected Sounds</h4>
+                            <p>Sudden sounds often occur in theme parks (e.g., people screaming on a passing rollercoaster), musicals (e.g., loud bangs) or parties (e.g., balloons popping). However, these are just some examples.</p>
+                            <input type="checkbox" name="sounds" id="sudden_sounds" value="SuddenSounds">
+                            <label for="sudden_sounds">Sudden Unexpected Sounds Likely</label>
+                        </div>
+                    </div>
+                    <div class="variable-group col-10 col-lg-5 col-md-5">
+                        <h3>Relationships to People and Crowds</h3>
+                        <div class="question">
+                            <h4>People's Level of Understanding</h4>
+                            <p>Close or Understanding people generally are easier to be around and require less masking, so it is less draining to spend time with them. They can also provide insight when needed to other people, for example if a break in a quiet place is needed.</p>
+                            <p>If you do not know the exact number of people, that's okay! Just estimate to the best of your knowledge.</p>
+                            <label for="support_people_count">Number of Close or Understanding People:</label>
+                            <input type="number" min="1" step="1" pattern="[0-9]*" name="people" id="support_people_count">
+                             <br>
+                            <label for="support_people_count">Number of Other People:</label>
+                            <input type="number" min="1" step="1" pattern="[0-9]*" name="people" id="other_people_count">                   
+                        </div>
+                        <div class="question">
+                            <h4>Quiet Space</h4>
+                            <p>Particularly in crowded venues or areas, having a separate space is a metaphorical lifesaver! It helps to reduce anxiety and be more relaxed and present when with others.</p>
+                            <input type="checkbox" name="quiet_place" id="quiet_space_available" value="QuietPlace">
+                            <label for="quiet_space_available">Quiet Space Available</label>                        
+                        </div>
+                    </div>
+                    <div class="variable-group col-10 col-lg-5 col-md-5">
+                        <h3>Possible Unexpected Change</h3>
+                        <div class="question">
+                            <h4>Food Changes</h4>
+                            <p>How likely is it that the food planned to eat will change? For example, having a Chinese takeaway instead of a Pizza? If no food is involved, select Very Unlikely.</p>
+                            <label for="food_changes_1">Very Unlikely</label>
+                            <input type="radio" id="food_changes_1" name="food_changes" value="1">
+                            <input type="radio" id="food_changes_2" name="food_changes" value="2">
+                            <input type="radio" id="food_changes_3" name="food_changes" value="3">
+                            <input type="radio" id="food_changes_4" name="food_changes" value="4">
+                            <input type="radio" id="food_changes_5" name="food_changes" value="5">
+                            <label for="food_changes_5">Very Likely</label>
+                        </div>
+                        <div class="question">
+                            <h4>Unexpected Delays</h4>
+                            <p>How likely is it that you could be significantly late to the social event or an activity that is part of it?</p>
+                            <label for="delays_1">Very Unlikely</label>
+                            <input type="radio" id="delays_1" name="delays" value="1">
+                            <input type="radio" id="delays_2" name="delays" value="2">
+                            <input type="radio" id="delays_3" name="delays" value="3">
+                            <input type="radio" id="delays_4" name="delays" value="4">
+                            <input type="radio" id="delays_5" name="delays" value="5">
+                            <label for="delays_5">Very Likely</label>
+                        </div>
+                        <div class="question">
+                            <h4>Travel Changes</h4>
+                            <p>How likely that your method of transport or commute will change unexpectedly? For example, from a bus to a train journey? Different methods of transport are stressful to different levels for each individual. Some may prefer trains, whereas some find buses more manageable.</p>
+                            <label for="transport_1">Very Unlikely</label>
+                            <input type="radio" id="transport_1" name="transport" value="1">
+                            <input type="radio" id="transport_2" name="transport" value="2">
+                            <input type="radio" id="transport_3" name="transport" value="3">
+                            <input type="radio" id="transport_4" name="transport" value="4">
+                            <input type="radio" id="transport_5" name="transport" value="5">
+                            <label for="transport_5">Very Likely</label>
+                        </div>
+                        <div class="question">
+                            <h4>Optional Participation</h4>
+                            <p>Is participation optional (with no implied pressure) to join in with an unplanned activity? For example, if people decide to swim at the beach because of the hot weather, is there no social pressure to enter the water?</p>
+                            <input type="checkbox" name="participation" id="optional_participation" value="OptionalParticipation">
+                            <label for="optional_participation">Participation Optional for Unplanned Activities</label>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--Social Situation Report Section-->
+</body>
+</html>
