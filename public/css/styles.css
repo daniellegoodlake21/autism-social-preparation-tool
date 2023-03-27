@@ -38,7 +38,7 @@ form input.generate-report-btn
     border: 1px solid black;
     font-variant: small-caps;
 }
-.situation-report-section
+#situation-report-section
 {
     background-color: rgb(250, 240, 200);
     border-top: 2px solid white;
