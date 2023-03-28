@@ -1,4 +1,4 @@
-const MAX_SENSORY_ENVIRONMENT_SCORE = 0; // change this
+const MAX_SENSORY_ENVIRONMENT_SCORE = 32;
 
 const ADVICE = {
     food: "You indicated that new or difficult foods may be stressful for you in this social situation. Consider bringing your own familiar foods you enjoy.",
@@ -25,9 +25,27 @@ function generateSensoryEnvironmentReport()
     let suddenSoundsScore = $("input[name='sounds']").first().is(":checked")  ? 2 : 0;
     let soundsStressScore = Number($("input[name='sounds_distress']:checked").val() -1);
     score += (loudMusicScore * soundsStressScore) + (suddenSoundsScore * soundsStressScore);
-    $("#sensory_environment_score").text(score);
+    $("#sensory_environment_score").text(score + " / " + MAX_SENSORY_ENVIRONMENT_SCORE);
 
-
+    // provide a summary statement
+    let summary;
+    if (score === 0)
+    {
+        summary = "Your Sensory Environment score is 0. This means you should in theory have very little stress associated with the sensory environment in this social situation. That's great!";
+    }
+    else if (score < 12)
+    {
+        summary = "Your Sensory Environment score is low. That's great! This social situation's sensory environment is unlikely to cause you distress as an individual. However, here are some tips which may help for potential issues picked up on:";
+    }
+    else if (score < 24)
+    {
+        summary = "Your Sensory Environment score is medium level. You may find the sensory environment moderately stressful, so here are some suggestions for how to reduce the stress and have a calmer, happier experience:";
+    }
+    else 
+    {
+        summary = "Your Sensory Environment score is medium level. You may find the sensory environment highly stressful and difficult to cope with. The following advice may help to provide you with a more manageable experience:";
+    }
+    $("#sensory_stress_description").text(summary);
     // select relevant advice to help this individual in this specific social situation
     let adviceStatements = [];
     if (foodStressScore > 0)
