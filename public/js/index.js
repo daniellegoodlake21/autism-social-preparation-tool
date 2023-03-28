@@ -43,7 +43,7 @@ function generateSensoryEnvironmentReport()
     }
     else 
     {
-        summary = "Your Sensory Environment score is medium level. You may find the sensory environment highly stressful and difficult to cope with. The following advice may help to provide you with a more manageable experience:";
+        summary = "Your Sensory Environment score is high. You may find the sensory environment highly stressful and difficult to cope with. The following advice may help to provide you with a more manageable experience:";
     }
     $("#sensory_stress_description").text(summary);
     // select relevant advice to help this individual in this specific social situation
