@@ -1,5 +1,7 @@
 const MAX_SENSORY_ENVIRONMENT_SCORE = 32;
 
+const DEFAULT_WEIGHT = 2;
+
 const ADVICE = {
     food: "You indicated that new or difficult foods may be stressful for you in this social situation. Consider bringing your own familiar foods you enjoy.",
     smells: "You indicated that strong smells may be stressful for you in this social situation. Consider plannning breaks into the day where you can go elsewhere without the smells.",
@@ -17,12 +19,12 @@ function generateSensoryEnvironmentReport()
     foods it does not add to stress in this case. */
     score += foodStressScore * foodScore;
     // smells
-    let smellScore = $("input[name='smells']").first().is(":checked")  ? 2 : 0;
+    let smellScore = $("input[name='smells']").first().is(":checked")  ? DEFAULT_WEIGHT : 0;
     let smellStressScore = Number($("input[name='smells_distress']:checked").val() -1);
     score += smellScore * smellStressScore;
     // sounds
-    let loudMusicScore = $("input[name='music']").first().is(":checked")  ? 2 : 0;
-    let suddenSoundsScore = $("input[name='sounds']").first().is(":checked")  ? 2 : 0;
+    let loudMusicScore = $("input[name='music']").first().is(":checked")  ? DEFAULT_WEIGHT: 0;
+    let suddenSoundsScore = $("input[name='sounds']").first().is(":checked")  ? DEFAULT_WEIGHT : 0;
     let soundsStressScore = Number($("input[name='sounds_distress']:checked").val() -1);
     score += (loudMusicScore * soundsStressScore) + (suddenSoundsScore * soundsStressScore);
     $("#sensory_environment_score").text(score + " / " + MAX_SENSORY_ENVIRONMENT_SCORE);
@@ -67,11 +69,41 @@ function generateSensoryEnvironmentReport()
         $("#sensory_environment_advice").append("<li>" + adviceStatements[i] + "</li>");   
     }
 
+    return score;
 }
 
 function generatePeopleReport()
 {
-
+    let score = 0;
+    let supportPeopleCount = $("#support_people_count").val();
+    let otherPeopleCount = $("#other_people_count").val();
+    let totalPeopleCount = supportPeopleCount + otherPeopleCount
+    let percentageSupportPeople = (supportPeopleCount/totalPeopleCount)*100;
+    /* determine whether there is enough support.
+    For this to be true there should be at least 1 support person per 4 other people.
+    This is equivalent to 20% of the total people or more. 
+    Alternatively, if the group is large enough (20+ people) then only 4 
+    support people are needed regardless of how many other people there are. */
+    let enoughSupport;
+    if (percentageSupportPeople >= 20 && totalPeopleCount < 20)
+    {
+        enoughSupport = true;
+    }
+    else if (totalPeopleCount >= 20 && supportPeopleCount >= 4)
+    {
+        enoughSupport = true;
+    }
+    else
+    {
+        enoughSupport = false;
+    }
+    // if there is not enough support this adds to the score
+    if (!enoughSupport)
+    {
+        let peopleStressScore = Number($("input[name='people_distress']:checked").val() -1);
+        score += DEFAULT_WEIGHT * peopleStressScore;
+    }
+    // To do next: add to score for (lack of) quiet space.
 }
 
 function generateUnexpectedChangeReport()
@@ -81,7 +113,11 @@ function generateUnexpectedChangeReport()
 
 function generateReport()
 {
-    generateSensoryEnvironmentReport();
+    let sensoryEnvironmentScore = generateSensoryEnvironmentReport();
+    let peopleScore = generatePeopleReport();
+    let unexpectedChangeScore = generateUnexpectedChangeReport();
+    let totalScore = Number(sensoryEnvironmentScore) + Number(peopleScore) + Number(unexpectedChangeScore); // out of total possible points
+    $("#totalScore").text(totalScore);
 }
 
 $("form").submit(function(e){
