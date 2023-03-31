@@ -1,6 +1,8 @@
 body
 {
     background-color: rgb(218, 211, 240);
+    margin: 0;
+    width: 100%;
 }
 .navbar
 {
@@ -25,11 +27,7 @@ h1, h2, h3
     height: 20rem;
     overflow-y: scroll;
 }
-.report-section
-{
-    margin-left: 1.5rem;
-}
-.aligned-header, form input.generate-report-btn
+.aligned-header, form input.generate-report-btn, .report-section
 {
     margin-left: 1.5rem;
 }
@@ -70,4 +68,50 @@ input[type="number"]
 {
     display: block;
     width: 4rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px)
+{
+    .variable-group
+    {
+        height: 102rem;
+    }
+    .variable-group.lower-group
+    {
+        height: 62rem;
+    }
+}
+@media screen and (max-width: 767px)
+{
+
+    .navbar-title
+    {
+        font-size: 2.75rem;
+        width: 100%;
+    }
+    li, .report-description
+    {
+        width: 90%;
+    }
+    .variable-group
+    {
+        height: fit-content;
+    }
+    .generate-report-btn
+    {
+        width: 83%;
+        font-size: 75%;
+    }
+    h4, h5
+    {
+        font-size: 90%;
+    }
+    .variable-group
+    {
+        height: fit-content;
+    }
+    .footer
+    {
+        height: 3rem;
+    }
 }
