@@ -228,6 +228,12 @@ function generateReport()
     let totalScore = Number(sensoryEnvironmentScore) + Number(peopleScore) + Number(unexpectedChangeScore); // out of total possible points
     let maxPoints = MAX_SENSORY_ENVIRONMENT_SCORE + MAX_PEOPLE_SCORE + MAX_UNEXPECTED_CHANGE_SCORE;
     $("#total_score").text(totalScore + " / " + maxPoints);
+    // once complete, display the report on-screen
+    $("#situation-report-section").show();
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#situation-report-section").offset().top
+    }, 2000);
+
 }
 
 $("form").submit(function(e){
