@@ -148,6 +148,7 @@ function generatePeopleReport()
     {
         $("#people_advice").append("<li>" + adviceStatements[i] + "</li>");   
     }
+    return score;
 }
 
 function generateUnexpectedChangeReport(foodStressScore)
@@ -155,7 +156,7 @@ function generateUnexpectedChangeReport(foodStressScore)
     let score = 0;
     // food changes
     let foodChangesScore = Number($("input[name='food_changes']:checked").val() -1);
-    score += foodChangesScore + foodStressScore;
+    score += foodChangesScore * foodStressScore;
     // timekeeping/delays
     let timekeepingScore = Number($("input[name='delays']:checked").val() -1);
     let timekeepingStressScore = Number($("input[name='timekeeping_distress']:checked").val() -1);
@@ -171,15 +172,15 @@ function generateUnexpectedChangeReport(foodStressScore)
     $("#unexpected_changes_score").text(score + " / " + MAX_UNEXPECTED_CHANGE_SCORE);
     // provide a summary statement
     let summary;
-    if (score === 19)
+    if (score === 0)
     {
         summary = "Your Unexpected Changes score is 0. This means you should in theory have very little stress associated with unexpected changes in this social situation. That's great!";
     }
-    else if (score < 38)
+    else if (score < 19)
     {
         summary = "Your Unexpected Changes score is low. That's great! This social situation's unexpected changes unlikely to cause you distress as an individual. However, here are some tips which may help for potential issues picked up on:";
     }
-    else if (score < 56)
+    else if (score < 38)
     {
         summary = "Your Unexpected Changes score is medium level. You may find the unexpected changes moderately stressful, so here are some suggestions for how to reduce the stress and have a calmer, happier experience:";
     }
