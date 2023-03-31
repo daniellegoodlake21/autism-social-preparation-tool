@@ -4,6 +4,13 @@ body
     margin: 0;
     width: 100%;
 }
+#privacy-policy-section
+{
+    background-color: lightskyblue;
+    border: 1px solid white;
+    padding: 1.5rem;
+    margin: 1.5rem;
+}
 .navbar
 {
     background-image: linear-gradient(lightblue, lightskyblue);
@@ -61,7 +68,18 @@ form input.generate-report-btn
 {
     margin-top: 1.5rem;
 }
-p, input, label, li
+a
+{
+    color: white;
+    font-variant: small-caps;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+a:hover
+{
+    color: midnightblue;
+}
+p, a, input, label, li
 {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
