@@ -1,6 +1,7 @@
 body
 {
-    background-color: rgb(218, 211, 240);
+    background-image: linear-gradient(rgb(76, 76, 120), rgba(44, 44, 44, 0.95));
+    background-repeat: no-repeat;
     margin: 0;
     width: 100%;
 }
@@ -15,6 +16,8 @@ body
 {
     background-image: linear-gradient(lightblue, lightskyblue);
     border-bottom: 2px solid white;
+    width: 100%;
+    margin: 0;
 }
 h1, h2, h3
 {
@@ -24,6 +27,10 @@ h1, h2, h3
     -webkit-text-stroke-color: black;
     color: white;
 }
+h4, h5
+{
+    font-variant: small-caps;
+}
 .variable-group
 {
     border: 2px solid white;
@@ -31,7 +38,7 @@ h1, h2, h3
     padding: 1.5rem;
     margin: 1.5rem;
     position: relative;
-    height: 20rem;
+    height: 35rem;
     overflow-y: scroll;
 }
 .aligned-header, form input.generate-report-btn, .report-section
@@ -45,7 +52,8 @@ form input.generate-report-btn
 }
 #situation-report-section
 {
-    background-color: rgb(250, 240, 200);
+    background-image: linear-gradient(rgb(250, 240, 200), gold);
+    background-repeat: no-repeat;
     border-top: 2px solid white;
     display: none;
 }
@@ -81,7 +89,7 @@ a:hover
 }
 p, a, input, label, li
 {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 input[type="number"]
 {
@@ -89,20 +97,15 @@ input[type="number"]
     width: 4rem;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1280px)
+@media screen and (max-width: 1280px)
 {
     .variable-group
     {
-        height: 102rem;
-    }
-    .variable-group.lower-group
-    {
-        height: 62rem;
+        height: fit-content;
     }
 }
 @media screen and (max-width: 767px)
 {
-
     .navbar-title
     {
         font-size: 2.75rem;
@@ -111,10 +114,6 @@ input[type="number"]
     li, .report-description
     {
         width: 90%;
-    }
-    .variable-group
-    {
-        height: fit-content;
     }
     .generate-report-btn
     {

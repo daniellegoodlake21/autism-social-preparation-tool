@@ -7,7 +7,7 @@ const ADVICE = {
     food: "New or difficult foods may be stressful for you in this social situation. Consider bringing your own familiar foods you enjoy.",
     smells: "Strong smells may be stressful for you in this social situation. Consider plannning breaks into the day where you can go elsewhere without the smells.",
     sounds: "You indicated that loud or sudden sounds may be stressful for you in this social situation. Consider wearing noise-cancelling headphones.",
-    people: "You indicated a low support-people to other-people ratio. This means you may not feel as understood in the social situation. Consider having a pre-scripted short explanation in your head for if you need time to process something or misunderstand a comment or question. Choose whether to disclose your autism or give a mord generic statement, based on what you feel comfortable with.",
+    people: "You indicated a low support-people to other-people ratio. This means you may not feel as understood in the social situation. Consider having a pre-scripted short explanation in your head for if you need time to process something or misunderstand a comment or question. Choose whether to disclose your autism or give a more generic statement, based on what you feel comfortable with.",
     quietSpace: "It is not possible to go to a quiet space to take a break. Consider bringing a subtle sensory toy or headphones for personal music if either would be helpful.",
     foodChanges: "The food involved in this social situation may change. Consider checking nearby dining places online that it could change to, in order to become more familiar with them and their menu. You could ask what the 'plan B' or alternative arrangements are likely to be.",
     delays: "There may be delays resulting in you being late to an activity or the social situation as a whole. Consider creating an alternative plan for if this happens, leaving early, or requesting that the 'essential' part of the social situation, if any - for example a restaurant booking - is booked later in the day.",
@@ -81,7 +81,7 @@ function generatePeopleReport()
     let score = 0;
     let supportPeopleCount = $("#support_people_count").val();
     let otherPeopleCount = $("#other_people_count").val();
-    let totalPeopleCount = supportPeopleCount + otherPeopleCount
+    let totalPeopleCount = supportPeopleCount + otherPeopleCount;
     let percentageSupportPeople = (supportPeopleCount/totalPeopleCount)*100;
     /* determine whether there is enough support.
     For this to be true there should be at least 1 support person per 4 other people.
@@ -178,7 +178,7 @@ function generateUnexpectedChangeReport(foodStressScore)
     }
     else if (score < 19)
     {
-        summary = "Your Unexpected Changes score is low. That's great! This social situation's unexpected changes unlikely to cause you distress as an individual. However, here are some tips which may help for potential issues picked up on:";
+        summary = "Your Unexpected Changes score is low. That's great! This social situation's unexpected changes are unlikely to cause you distress as an individual. However, here are some tips which may help for potential issues picked up on:";
     }
     else if (score < 38)
     {
@@ -237,5 +237,6 @@ function generateReport()
 }
 
 $("form").submit(function(e){
+
     e.preventDefault();
 });
