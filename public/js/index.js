@@ -109,7 +109,7 @@ function generatePeopleReport()
         score += DEFAULT_WEIGHT * peopleStressScore;
     }
     // handle quiet space need and availability
-    let quietSpaceScore =  $("input[name='quiet_space_available']").first().is(":checked")  ? 0 : DEFAULT_WEIGHT;
+    let quietSpaceScore =  $("input[name='quiet_place']").first().is(":checked")  ? 0 : DEFAULT_WEIGHT;
     let lackOfQuietSpaceDistress = Number($("input[name='needs_space']:checked").val()-1);
     score += quietSpaceScore * lackOfQuietSpaceDistress;
     $("#people_score").text(score + " / " + MAX_PEOPLE_SCORE);
