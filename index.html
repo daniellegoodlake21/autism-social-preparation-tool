@@ -23,16 +23,15 @@
     <nav id="situation-variables-section">
         <div class="container-fluid p-4">
             <h2 class="aligned-header">Social Situation Variables</h2>
-            <form id="report_form" method="post" action="#" onsubmit="generateReport()">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="variable-group col-10 col-lg-5">
                             <h3>Individual Personality Factors</h3>
                             <h6><em>For these questions, please indicate how much you agree with the statement. These should be answered from the Autistic person's perspective.</em></h6>
-                            <div class="question">
+                            <div>
                                 <h4>Sensory Environment</h4>
                                 <ol>
-                                    <li>
+                                    <li class="question">
                                         <p>I find it very distressing to try new foods, or foods with textures or tastes I dislike.</p>
                                         <input required="required" type="radio" id="food_distress_1" name="food_distress" value="1">
                                         <label for="food_distress_1">Strongly Disagree (it never affects me)</label>
@@ -49,7 +48,7 @@
                                         <input required="required" type="radio" id="food_distress_5" name="food_distress" value="5">
                                         <label for="food_distress_5">Strongly Agree (it always affects me significantly)</label>
                                     </li>
-                                    <li>
+                                    <li class="question">
                                         <p>I find strong smells overwhelming.</p>
                                         <input required="required" type="radio" id="smells_distress_1" name="smells_distress" value="1">
                                         <label for="smells_distress_1">Strongly Disagree (it never affects me)</label>
@@ -66,7 +65,7 @@
                                         <input required="required" type="radio" id="smells_distress_5" name="smells_distress" value="5">
                                         <label for="smells_distress_5">Strongly Agree (it always affects me significantly)</label>
                                     </li>
-                                    <li>
+                                    <li class="question">
                                         <p>I find loud or sudden sounds overwhelming.</p>
                                         <input required="required" type="radio" id="sounds_distress_1" name="sounds_distress" value="1">
                                         <label for="sounds_distress_1">Strongly Disagree (it never affects me)</label>
@@ -86,7 +85,7 @@
                                 </ol>
                                 <h4>Being Amongst People</h4>
                                 <ol>
-                                    <li>
+                                    <li class="question">
                                         <p>I find it stressful to be around people who don't understand my needs well.</p>
                                         <input required="required" type="radio" id="people_distress_1" name="people_distress" value="1">
                                         <label for="people_distress_1">Strongly Disagree (it never affects me)</label>
@@ -103,7 +102,7 @@
                                         <input required="required" type="radio" id="people_distress_5" name="people_distress" value="5">
                                         <label for="people_distress_5">Strongly Agree (it always affects me significantly)</label>
                                     </li>
-                                    <li>
+                                    <li class="question">
                                         <p>I often need time out in a social situation where others might not.</p>
                                         <input required="required" type="radio" id="needs_space_1" name="needs_space" value="1">
                                         <label for="needs_space_1">Strongly Disagree (it never affects me)</label>
@@ -123,7 +122,7 @@
                                 </ol>    
                                 <h4>Timekeeping</h4>
                                 <ol>
-                                    <li>
+                                    <li class="question">
                                         <p>I find it distressing if I am late somewhere.</p>
                                         <input required="required" type="radio" id="timekeeping_distress_1" name="timekeeping_distress" value="1">
                                         <label for="timekeeping_distress_1">Strongly Disagree (it never affects me)</label>
@@ -143,7 +142,7 @@
                                 </ol>
                                 <h4>Public Transport</h4>
                                 <ol>
-                                    <li>
+                                    <li class="question">
                                         <p>I find particular methods (e.g., buses or trains) of public transport stressful, and need advance warning before I use them.</p>
                                         <input required="required" type="radio" id="transport_distress_1" name="transport_distress" value="1">
                                         <label for="transport_distress_1">Strongly Disagree (it never affects me)</label>
@@ -163,7 +162,7 @@
                                 </ol>
                                 <h4>Spontaneous Activity</h4>
                                 <ol>
-                                    <li>
+                                    <li class="question">
                                         <p>I find it difficult to adapt if someone suggests a spontaneous activity or change of plans.</p>
                                         <input required="required" type="radio" id="spontaneity_distress_1" name="spontaneity_distress" value="1">
                                         <label for="spontaneity_distress_1">Strongly Disagree (it never affects me)</label>
@@ -301,8 +300,7 @@
                         </div>
                     </div>
                 </div>
-                <input required="required" type="submit" class="generate-report-btn btn btn-lg bg-light" value="Generate Social Situation Analysis Report">
-            </form>
+                <button type="button" class="generate-report-btn btn btn-lg bg-light" onclick="generateReport()">Generate Social Situation Analysis Report</button>
         </div>
     </nav>
     <!--Situation Report Section-->

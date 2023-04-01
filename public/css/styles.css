@@ -5,6 +5,15 @@ body
     margin: 0;
     width: 100%;
 }
+.invalid-message
+{
+    color: red;
+    font-weight: bolder;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 0.5px;
+    font-variant: small-caps;
+    font-size: 1.2rem;
+}
 #privacy-policy-section
 {
     background-color: lightskyblue;
@@ -38,10 +47,10 @@ h4, h5
     padding: 1.5rem;
     margin: 1.5rem;
     position: relative;
-    height: 35rem;
+    height: 40rem;
     overflow-y: scroll;
 }
-.aligned-header, form input.generate-report-btn, .report-section
+.aligned-header, .generate-report-btn, .report-section
 {
     margin-left: 1.5rem;
 }
@@ -54,7 +63,7 @@ form input.generate-report-btn
 {
     background-image: linear-gradient(rgb(250, 240, 200), gold);
     background-repeat: no-repeat;
-    border-top: 2px solid white;
+    border-top: 4px solid white;
     display: none;
 }
 .footer
@@ -101,7 +110,8 @@ input[type="number"]
 {
     .variable-group
     {
-        height: fit-content;
+        min-height: fit-content;
+        min-height: -moz-fit-content;
     }
 }
 @media screen and (max-width: 767px)
@@ -123,10 +133,6 @@ input[type="number"]
     h4, h5
     {
         font-size: 90%;
-    }
-    .variable-group
-    {
-        height: fit-content;
     }
     .footer
     {

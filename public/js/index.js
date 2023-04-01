@@ -81,8 +81,8 @@ function generatePeopleReport()
     let score = 0;
     let supportPeopleCount = $("#support_people_count").val();
     let otherPeopleCount = $("#other_people_count").val();
+    let percentageSupportPeople = (supportPeopleCount/otherPeopleCount)*100;
     let totalPeopleCount = supportPeopleCount + otherPeopleCount;
-    let percentageSupportPeople = (supportPeopleCount/totalPeopleCount)*100;
     /* determine whether there is enough support.
     For this to be true there should be at least 1 support person per 4 other people.
     This is equivalent to 20% of the total people or more. 
@@ -134,7 +134,7 @@ function generatePeopleReport()
     $("#people_description").text(summary);
     // select relevant advice to help this individual in this specific social situation
     let adviceStatements = [];
-    if (peopleStressScore > 0)
+    if (!enoughSupport)
     {
         adviceStatements.push(ADVICE["people"]);
     }
@@ -216,27 +216,84 @@ function generateUnexpectedChangeReport(foodStressScore)
     return score;
 }
 
+function validateAllInput()
+{
+    let allValid = true;
+    let firstInvalidInput = null;
+    // clear previous invalid input messages
+    $(".question .invalid-message").remove();
+    // validate radio button questions
+    $("input[type='radio']:required").each(function()
+    {
+        // check no option has been selected
+        let radioInputName = $(this).attr("name");
+        if (!$("input[name='" + radioInputName + "']:checked").val())
+        {
+            allValid = false;
+            let answerRequiredMessage = $("<p>", {
+                class: "invalid-message",
+                text: "Please select an option."
+            });
+            let question = $(this).closest(".question");
+            if (question.find(".invalid-message").length === 0)
+            {
+                question.append(answerRequiredMessage);
+            }
+            if (!firstInvalidInput)
+            {
+                firstInvalidInput = this;
+            }
+        }
+    });
+    // validate number input questions
+    let supportPeopleCount = $("#support_people_count").val();
+    let otherPeopleCount = $("#other_people_count").val();
+    if (!isNaN(supportPeopleCount) && !isNaN(otherPeopleCount))
+    {
+        // check the total number of people attending is greater than 0
+        if (supportPeopleCount + otherPeopleCount <= 0)
+        {
+            allValid = false;
+            let answerRequiredMessage = $("<p>", {
+                class: "invalid-message",
+                text: "Please input a minimum of 1 person total who is attending."
+            });
+            $("#people_count_question").append(answerRequiredMessage);
+        }
+        if (!firstInvalidInput)
+        {
+            firstInvalidInput = $("#people_count_question");
+        }
+    }
+    if (firstInvalidInput)
+    {
+        // scroll to first invalid input if there is one
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $(firstInvalidInput).offset().top - 150
+        }, 0);
+        return allValid;
+    }
+}
 function generateReport()
 {
-    // foodStressScore is used in both generateSensoryEnvironmentReport and generateUnexpectedChangeReport so it is declared outside those functions
-    let foodStressScore = Number($("input[name='food_distress']:checked").val()-1); /* for example, if the user strongly disagrees that
-    new or disliked foods are distressing then the food score is multiplied by zero, so even if there are new or disliked
-    foods it does not add to stress in this case. */
-    let sensoryEnvironmentScore = generateSensoryEnvironmentReport(foodStressScore);
-    let peopleScore = generatePeopleReport();
-    let unexpectedChangeScore = generateUnexpectedChangeReport(foodStressScore);
-    let totalScore = Number(sensoryEnvironmentScore) + Number(peopleScore) + Number(unexpectedChangeScore); // out of total possible points
-    let maxPoints = MAX_SENSORY_ENVIRONMENT_SCORE + MAX_PEOPLE_SCORE + MAX_UNEXPECTED_CHANGE_SCORE;
-    $("#total_score").text(totalScore + " / " + maxPoints);
-    // once complete, display the report on-screen
-    $("#situation-report-section").show();
-    $([document.documentElement, document.body]).animate({
-        scrollTop: $("#situation-report-section").offset().top
-    }, 2000);
+    let valid = validateAllInput();
+    if (valid)
+    {
+        // foodStressScore is used in both generateSensoryEnvironmentReport and generateUnexpectedChangeReport so it is declared outside those functions
+        let foodStressScore = Number($("input[name='food_distress']:checked").val()-1); /* for example, if the user strongly disagrees that
+        new or disliked foods are distressing then the food score is multiplied by zero, so even if there are new or disliked
+        foods it does not add to stress in this case. */
+        let sensoryEnvironmentScore = generateSensoryEnvironmentReport(foodStressScore);
+        let peopleScore = generatePeopleReport();
+        let unexpectedChangeScore = generateUnexpectedChangeReport(foodStressScore);
+        let totalScore = Number(sensoryEnvironmentScore) + Number(peopleScore) + Number(unexpectedChangeScore); // out of total possible points
+        let maxPoints = MAX_SENSORY_ENVIRONMENT_SCORE + MAX_PEOPLE_SCORE + MAX_UNEXPECTED_CHANGE_SCORE;
+        $("#total_score").text(totalScore + " / " + maxPoints);
+        // once complete, display the report on-screen
+        $("#situation-report-section").show();
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $("#situation-report-section").offset().top + 150
+        }, 500);
+    }
 
 }
-
-$("form").submit(function(e){
-
-    e.preventDefault();
-});
